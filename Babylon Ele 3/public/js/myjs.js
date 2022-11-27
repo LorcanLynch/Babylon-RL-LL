@@ -1,9 +1,25 @@
 const createScene = function() {
     const scene = new BABYLON.Scene(engine);
-    //Add a camera to the scen and attach it to the canvas
-    const camera = new BABYLON.ArcRotateCamera("camera", -Math.PI / 2, Math.PI /
-    2.5, 15, new BABYLON.Vector3(0, 0, 0));
-    camera.attachControl(canvas, true);
+
+    //Add a camera to to the scene and attach it to the canvas
+    const camera = new BABYLON.FollowCamera("FollowCam", new BABYLON.Vector3(-6, 0, 0), scene);
+
+    // We then set the goal: height above the the center of the target;
+    camera.heightOffset = 8;
+    
+    // radial distance from target plus height offset;
+    camera.radius = 1;
+
+
+    // rotation, in radians, center of target in x y plane;
+    camera.rotationOffset = 0;
+
+    // acceleration in moving from current to goal position;
+    camera.cameraAcceleration = 0.005
+
+    //speed at which acceleration is halted
+    camera.maxCameraSpeed = 10
+
     BABYLON.Animation.AllowMatricesInterpolation = true;
     var points = -1;
     //Add a light(s) to the Scene
@@ -28,6 +44,7 @@ const createScene = function() {
         // Set the target of the camera to the first imported mesh
         pirate = newMeshes[0];
         var skeletons= skeletons[0];
+        camera.lockedTarget = pirate;
         pirate.scaling = new BABYLON.Vector3(.02,.02,.02);
         skeletons.animationPropertiesOverride = new BABYLON.AnimationPropertiesOverride();
         skeletons.animationPropertiesOverride.enableBlending = true;
@@ -144,9 +161,4 @@ const createScene = function() {
     
     return scene;
     }
-
-
-    
-
-
 

@@ -1,11 +1,13 @@
 const createScene = function() {
     const scene = new BABYLON.Scene(engine);
     //Add a camera to the scen and attach it to the canvas
-    const camera = new BABYLON.ArcRotateCamera("camera", -Math.PI / 2, Math.PI /
-    2.5, 15, new BABYLON.Vector3(0, 0, 0));
+    const camera = new BABYLON.ArcRotateCamera("camera", -Math.PI / 1, Math.PI /
+    4, 250, new BABYLON.Vector3(0, 0, 0));
+    camera.lowerBetaLimit = 6;
+    camera.upperBetaLimit = 1;
     camera.attachControl(canvas, true);
     //Add a light(s) to the Scene
-    const light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(1, 1,0));
+    const light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(1, 1, 0));
     var skybox = BABYLON.MeshBuilder.CreateBox("skyBox", {size:1000.0}, scene);
 	var skyboxMaterial = new BABYLON.StandardMaterial("skyBox", scene);
 	skyboxMaterial.backFaceCulling = false;

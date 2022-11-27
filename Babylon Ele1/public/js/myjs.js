@@ -1,10 +1,36 @@
 const createScene = function() {
     const scene = new BABYLON.Scene(engine);
-    //Add a camera to the scen and attach it to the canvas
-    const camera = new BABYLON.ArcRotateCamera("camera", -Math.PI / 2, Math.PI /
-    2.5, 15, new BABYLON.Vector3(0, 0, 0));
+    // //Add a camera to the scen and attach it to the canvas
+    // const camera = new BABYLON.ArcRotateCamera("camera", -Math.PI / 2, Math.PI /
+    // 3, 16, new BABYLON.Vector3(0, 0, 0));
+    // camera.attachControl(canvas, true);
+    // camera.lowerBetaLimit = 3;
+    // camera.upperBetaLimit = 1;
+    // camera.panningSensibility = 0;
+
+    var camera = new BABYLON.FollowCamera("FollowCam", new BABYLON.Vector3(1, 4, -5), scene);
+    
+    // The goal distance of camera from target
+    camera.radius = 0;
+
+    // The goal height of camera above local origin (centre) of target
+    camera.heightOffset = 0;
+
+    // The goal rotation of camera around local origin (centre) of target in x y plane
+    camera.rotationOffset = 0;
+
+    // Acceleration of camera in moving from current to goal position 
+    camera.cameraAcceleration = 0.005;
+
+    // The speed at which acceleration is halted
+    camera.maxCameraSpeed = 10;
+
+    // This attaches the camera to the canvas
     camera.attachControl(canvas, true);
     
+    
+
+
     //Add a light(s) to the Scene
     const light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(100, 10,
     10));
@@ -104,6 +130,9 @@ for (let i = 0; i < 30; i++) {
     
 }); 
 }
+
+
+
     }
 
 
