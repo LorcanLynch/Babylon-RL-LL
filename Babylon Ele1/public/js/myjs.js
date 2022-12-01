@@ -8,7 +8,7 @@ const createScene = function() {
     // camera.upperBetaLimit = 1;
     // camera.panningSensibility = 0;
 
-    var camera = new BABYLON.FollowCamera("FollowCam", new BABYLON.Vector3(1, 4, -5), scene);
+    var camera = new BABYLON.FollowCamera("FollowCam", new BABYLON.Vector3(1, 4, -20), scene);
     
     // The goal distance of camera from target
     camera.radius = 0;
